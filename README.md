@@ -51,7 +51,7 @@ flowchart TB
         platform & gateway & cms & commerce & payments & booking & notifications & analytics -.events.-> nats
     end
 
-    pg[(PostgreSQL 16<br/>container locally · managed DB in prod<br/>one DB + login per service)]
+    pg[(PostgreSQL 16<br/>container locally · managed DB in other environments<br/>DB + login per service)]
     net --> pg
 ```
 
@@ -232,7 +232,7 @@ make dev-down     # stop, keep data
 make dev-reset    # stop, delete volumes and generated secrets
 ```
 
-`make dev` wraps `scripts/dev.sh`. On first run it generates every password, signing key and dev certificate into git-ignored files. Then it runs `docker compose --env-file .env.local up` and waits for every health check to pass. The studio is then at http://localhost:8080.
+`make dev` wraps `scripts/dev.sh`. On first run it generates every password, signing key and dev certificate into git-ignored files. Then it runs `docker compose --env-file .env.local up` and waits for every health check to pass. The studio is then at http://localhost:<port>.
 
 ## Security checklist
 
@@ -249,7 +249,7 @@ make dev-reset    # stop, delete volumes and generated secrets
 | Encrypted service-to-broker traffic | NATS over TLS 1.2+ with a pinned CA |
 | Service isolation | Per-service NATS users and Postgres logins, plus row-level security |
 | Disk exhaustion | Log rotation (`10m × 3`) and JetStream storage limits |
-| Vulnerability scanning | Trivy gate in CI (see the [GitLab pipeline project](../gitlab-cicd-secure-container-pipeline/)) |
+| Vulnerability scanning | Trivy gate in CI (see the [GitLab pipeline project](../Gitlab-CI-CD-secure-container-pipeline/)) |
 
 ## Repository layout (container-related files)
 
