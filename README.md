@@ -249,7 +249,7 @@ make dev-reset    # stop, delete volumes and generated secrets
 | Encrypted service-to-broker traffic | NATS over TLS 1.2+ with a pinned CA |
 | Service isolation | Per-service NATS users and Postgres logins, plus row-level security |
 | Disk exhaustion | Log rotation (`10m × 3`) and JetStream storage limits |
-| Vulnerability scanning | Trivy gate in CI (see the [GitLab pipeline project](../Gitlab-CI-CD-secure-container-pipeline/)) |
+| Vulnerability scanning | Trivy gate in CI (see the [GitLab pipeline project](https://github.com/OpsandOrchids/Gitlab-CI-CD-secure-container-pipeline)) |
 
 ## Repository layout (container-related files)
 
